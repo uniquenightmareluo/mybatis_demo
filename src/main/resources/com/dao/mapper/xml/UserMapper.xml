@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--确定接口类的对应位置-->
+<mapper namespace ="com.dao.mapper.UserMapper">
+    <!--查询对应表的所有数据-->
+    <select id="selectAll" resultType="com.dao.entity.User">
+        select * from users
+    </select>
+    <!--往对应表中插入数据-->
+    <insert id="insertUser">
+        insert into users(id,name,address,sex) value (#{id},#{name},#{address},#{sex})
+    </insert>
+    <!--更新表中某行数据-->
+    <update id="updateUser">
+        update users set name = #{name}, address = #{address}, sex = #{sex} where id = #{id}
+    </update>
+    <!--删除对应行的数据-->
+    <delete id="deleteUser">
+        delete from users where id = #{id}
+    </delete>
+</mapper>

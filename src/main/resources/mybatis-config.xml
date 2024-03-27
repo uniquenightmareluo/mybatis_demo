@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--通过 resource 确定外部指定属性文件该属性文件描述数据库连接的相关配置（数据库驱动、连接数据库的url、数据库用户名、数据库密码），位置也是在/resources目录下-->
+    <properties resource="jdbc.properties"> </properties>
+    <!--表示配置MyBatis的多套运行环境，将SQL映射到多个不同的数据库上，该元素节点不可以配置多个environments子元素节点，但是必须指定其中一个默认运行环境（通过default指定）-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--告诉MyBatis去哪里找到SQL映射文件（开发者定义的映射SQL语句），整个项目中可以有1个或多个SQL映射文件。-->
+    <mappers>
+        <mapper resource="com/dao/mapper/xml/UserMapper.xml"/>
+    </mappers>
+</configuration>
